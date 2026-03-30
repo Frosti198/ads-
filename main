@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Task 1: Sum of squares (1^2 + 2^2 + ... + n^2)
+        System.out.println("Task 1 (n=4): " + sumOfSquares(4));
+
+        // Task 2: Sum of array elements
+        int[] arr = {10, 20, 30, 40, 50};
+        System.out.println("Task 2 (sum of first 3): " + sumOfArray(arr, 3));
+
+        // Task 3: Sum of powers (b^0 + b^1 + ... + b^n)
+        System.out.println("Task 3 (b=4, n=3): " + sumOfPowers(4, 3));
+
+        // Task 4: Reverse sequence (No arrays, no loops)
+        System.out.println("Task 4: Enter N, then N numbers:");
+        if (scanner.hasNextInt()) {
+            int n = scanner.nextInt();
+            reversePrint(scanner, n);
+            System.out.println();
+        }
+        
+        scanner.close();
+    }
+
+    // Task 1: Time O(n), Space O(n)
+    public static int sumOfSquares(int n) {
+        if (n <= 1) return 1;
+        return (n * n) + sumOfSquares(n - 1);
+    }
+
+    // Task 2: Time O(n), Space O(n)
+    public static int sumOfArray(int[] arr, int n) {
+        if (n <= 0) return 0;
+        return arr[n - 1] + sumOfArray(arr, n - 1);
+    }
+
+    // Task 3: Time O(n), Space O(n)
+    public static int sumOfPowers(int b, int n) {
+        if (n == 0) return 1;
+        return (int) Math.pow(b, n) + sumOfPowers(b, n - 1);
+    }
+
+    // Task 4: Time O(n), Space O(n) 
+    public static void reversePrint(Scanner sc, int n) {
+        if (n <= 0) return;
+        int value = sc.nextInt();
+        reversePrint(sc, n - 1);
+        System.out.print(value + " ");
+    }
+}
